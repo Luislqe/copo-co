@@ -1,0 +1,37 @@
+{%- comment -%}
+  Tarjeta seleccionable del pack. Usa la primera variante disponible.
+  Parámetros: item (product), section_id, checked (boolean), label (opcional)
+{%- endcomment -%}
+{%- assign v = item.selected_or_first_available_variant -%}
+{%- assign input_id = 'CopoBundle-' | append: section_id | append: '-' | append: item.id -%}
+<li class="copo-bundle__item{% if checked and v.available %} is-selected{% endif %}" data-copo-bundle-item>
+  <label class="copo-bundle__label" for="{{ input_id }}">
+    <span class="copo-bundle__media">
+      {%- if item.featured_media -%}
+        {{ item.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 240px, 96px', widths: '200, 400, 600', alt: item.featured_media.alt }}
+      {%- else -%}
+        {% render 'copo-placeholder', variant: 'product', label: 'Provisional' %}
+      {%- endif -%}
+    </span>
+    <span class="copo-bundle__info">
+      <input
+        class="copo-bundle__check"
+        type="checkbox"
+        id="{{ input_id }}"
+        data-variant-id="{{ v.id }}"
+        data-price="{{ v.price }}"
+        {% if checked and v.available %}checked{% endif %}
+        {% unless v.available %}disabled{% endunless %}
+      >
+      {%- if label != blank -%}<span class="copo-eyebrow" style="margin-bottom:.4rem">{{ label }}</span>{%- endif -%}
+      <span class="copo-bundle__name">{{ item.title | escape }}{% unless item.has_only_default_variant %} · {{ v.title | escape }}{% endunless %}</span>
+      <span class="copo-bundle__price">
+        {%- if v.available -%}
+          {{ v.price | money }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </span>
+    </span>
+  </label>
+</li>

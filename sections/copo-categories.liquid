@@ -1,0 +1,85 @@
+<section
+  id="CopoCats-{{ section.id }}"
+  class="copo-cats copo-section{% if section.settings.mobile_scroll %} copo-cats--scroll{% endif %} color-{{ section.settings.color_scheme }} gradient"
+>
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+      <div class="copo-section__head">
+        {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="copo-section__title h1">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="copo-lede">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="copo-cats__grid" style="--copo-cols: {{ section.settings.columns }};">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign collection = block.settings.collection
+          assign title = block.settings.title | default: collection.title
+          assign image = block.settings.image | default: collection.featured_image
+          if collection != blank
+            assign url = collection.url
+          else
+            assign url = routes.collections_url
+          endif
+        -%}
+        <a href="{{ url }}" class="copo-cat{% if block.settings.wide %} copo-cat--wide{% endif %}" {{ block.shopify_attributes }}>
+          <div class="copo-cat__media">
+            {%- if image != blank -%}
+              {{ image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, (min-width: 750px) 50vw, 70vw', widths: '400, 600, 900, 1200', alt: '' }}
+            {%- else -%}
+              {% render 'copo-placeholder', variant: 'room-on', label: 'Provisional' %}
+            {%- endif -%}
+          </div>
+          <div class="copo-cat__body">
+            <h3 class="copo-cat__title">{{ title | escape | default: 'Categoría' }}</h3>
+            {%- if block.settings.text != blank -%}<p class="copo-cat__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+            <span class="copo-cat__cta">{{ section.settings.cta | escape }} <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Copo · Categorías",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Explora" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Todo para una casa <em>con ambiente</em>" },
+    { "type": "richtext", "id": "text", "label": "Texto" },
+    { "type": "range", "id": "columns", "label": "Columnas en escritorio", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "text", "id": "cta", "label": "Texto del enlace", "default": "Ver todo" },
+    { "type": "checkbox", "id": "mobile_scroll", "label": "Desplazamiento horizontal en móvil", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoría",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Colección" },
+        { "type": "text", "id": "title", "label": "Título (opcional)", "info": "Por defecto, el nombre de la colección." },
+        { "type": "text", "id": "text", "label": "Descripción corta" },
+        { "type": "image_picker", "id": "image", "label": "Imagen (opcional)", "info": "Por defecto, la imagen de la colección. Mejor una foto de ambiente en vertical." },
+        { "type": "checkbox", "id": "wide", "label": "Tarjeta ancha", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Copo · Categorías",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Iluminación navideña", "text": "Proyectores, guirnaldas y luces LED." } },
+        { "type": "category", "settings": { "title": "Decoración para el hogar", "text": "Detalles para el salón y los dormitorios." } },
+        { "type": "category", "settings": { "title": "Árbol de Navidad", "text": "Adornos y accesorios." } },
+        { "type": "category", "settings": { "title": "Regalos originales", "text": "Ideas para sorprender." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

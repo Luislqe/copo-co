@@ -1,0 +1,151 @@
+{%- liquid
+  assign product = section.settings.product
+  assign variant = product.selected_or_first_available_variant
+  assign heading_text = section.settings.heading
+  if heading_text == blank and product != blank
+    assign heading_text = product.title | escape
+  endif
+-%}
+<section
+  id="CopoStar-{{ section.id }}"
+  class="copo-star copo-section copo-star--media-{{ section.settings.media_position }} color-{{ section.settings.color_scheme }} gradient{% if section.settings.glow %} copo-glow{% endif %}"
+>
+  <div class="page-width">
+    <div class="copo-star__grid">
+      <div class="copo-star__media">
+        {%- if section.settings.badge != blank -%}
+          <span class="copo-star__badge">{{ section.settings.badge | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, preload: 'none', image_size: '1200x'
+          }}
+        {%- elsif section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 55vw, 100vw', widths: '600, 900, 1200, 1600', alt: section.settings.image.alt
+          }}
+        {%- elsif product.featured_media != blank -%}
+          {{
+            product.featured_media
+            | image_url: width: 1600
+            | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 55vw, 100vw', widths: '600, 900, 1200, 1600', alt: product.featured_media.alt
+          }}
+        {%- else -%}
+          {% render 'copo-placeholder', variant: 'room-on', label: 'Provisional · foto o vídeo real del efecto' %}
+        {%- endif -%}
+      </div>
+
+      <div class="copo-star__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 class="copo-star__title">{{ heading_text }}</h2>
+        {%- if section.settings.text != blank -%}
+          <div class="copo-star__text copo-lede">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="copo-star__points" role="list">
+            {%- for block in section.blocks -%}
+              <li class="copo-star__point" {{ block.shopify_attributes }}>
+                {%- render 'copo-icon', icon: block.settings.icon -%}
+                <div>
+                  <strong>{{ block.settings.title | escape }}</strong>
+                  {%- if block.settings.text != blank -%}<span>{{ block.settings.text | escape }}</span>{%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="copo-star__buy">
+          {%- if product != blank and section.settings.show_price -%}
+            <p class="copo-star__price">
+              {%- if product.price_varies -%}
+                {%- assign from_price = product.price_min | money -%}
+                {{ 'products.product.price.from_price_html' | t: price: from_price }}
+              {%- else -%}
+                {{ variant.price | money }}
+                {%- if variant.compare_at_price > variant.price -%}
+                  <s><span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>{{ variant.compare_at_price | money }}</s>
+                {%- endif -%}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+
+          <div class="copo-star__actions">
+            <a
+              href="{% if product != blank %}{{ product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"
+              class="button button--primary"
+            >
+              {{- section.settings.button_label | escape -}}
+            </a>
+            {%- if product != blank and section.settings.quick_add and product.has_only_default_variant and variant.available -%}
+              <copo-quick-add>
+                <button type="button" class="button button--secondary" data-variant-id="{{ variant.id }}">
+                  {{ 'products.product.add_to_cart' | t }}
+                </button>
+                <p class="copo-error" data-copo-error role="alert" hidden></p>
+              </copo-quick-add>
+            {%- endif -%}
+          </div>
+
+          {%- if settings.copo_returns_text != blank -%}
+            <p class="copo-star__note">{% render 'copo-icon', icon: 'return' %}{{ settings.copo_returns_text | escape }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Copo · Producto estrella",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "product", "id": "product", "label": "Producto" },
+    { "type": "video", "id": "video", "label": "Vídeo del efecto (opcional)", "info": "Grabado con el producto real. Tiene prioridad sobre la imagen." },
+    { "type": "image_picker", "id": "image", "label": "Imagen de ambiente", "info": "Si está vacía, se usa la imagen principal del producto." },
+    { "type": "select", "id": "media_position", "label": "Posición de la imagen", "default": "left", "options": [
+      { "value": "left", "label": "Izquierda" },
+      { "value": "right", "label": "Derecha" }
+    ] },
+    { "type": "text", "id": "badge", "label": "Etiqueta sobre la imagen", "default": "Nuestro favorito" },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "El producto estrella" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titular", "info": "Si está vacío, se usa el nombre del producto.", "default": "Tu techo, convertido en <em>noche de invierno</em>" },
+    { "type": "richtext", "id": "text", "label": "Descripción", "default": "<p>Enchúfalo, apaga la luz principal y deja que la habitación cambie por completo. Una forma sencilla de crear ambiente para cenas, tardes de película o la hora de dormir de los peques.</p>" },
+    { "type": "checkbox", "id": "show_price", "label": "Mostrar precio", "default": true },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Descubrir el efecto" },
+    { "type": "checkbox", "id": "quick_add", "label": "Botón 'Añadir al carrito' (solo productos sin variantes)", "default": true },
+    { "type": "checkbox", "id": "glow", "label": "Resplandor dorado de fondo", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-3" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Punto clave",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "default": "sparkle", "options": [{"value": "star", "label": "Estrella"}, {"value": "sparkle", "label": "Destello"}, {"value": "snowflake", "label": "Copo de nieve"}, {"value": "plug", "label": "Enchufe"}, {"value": "timer", "label": "Temporizador"}, {"value": "gift", "label": "Regalo"}, {"value": "truck", "label": "Envío"}, {"value": "shield", "label": "Escudo"}, {"value": "return", "label": "Devolución"}, {"value": "lock", "label": "Candado"}, {"value": "home", "label": "Casa"}, {"value": "bulb", "label": "Bombilla"}, {"value": "box", "label": "Caja"}, {"value": "chat", "label": "Mensaje"}, {"value": "moon", "label": "Luna"}, {"value": "check", "label": "Check"}, {"value": "ruler", "label": "Medidas"}, {"value": "leaf", "label": "Hoja"}] },
+        { "type": "text", "id": "title", "label": "Título", "default": "Punto clave" },
+        { "type": "text", "id": "text", "label": "Texto", "info": "Solo características verificadas con el proveedor." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Copo · Producto estrella",
+      "blocks": [
+        { "type": "point", "settings": { "icon": "plug", "title": "Enchufar y listo", "text": "Se conecta directamente a la corriente." } },
+        { "type": "point", "settings": { "icon": "home", "title": "Transforma cualquier habitación", "text": "Salón, dormitorio o habitación infantil." } },
+        { "type": "point", "settings": { "icon": "gift", "title": "Un regalo que se nota", "text": "Para quien ya lo tiene todo." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

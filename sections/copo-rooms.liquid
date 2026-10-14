@@ -1,0 +1,59 @@
+<section id="CopoRooms-{{ section.id }}" class="copo-rooms copo-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+      <div class="copo-section__head">
+        {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="copo-section__title h1">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="copo-lede">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="copo-rooms__grid">
+      {%- for block in section.blocks -%}
+        <figure class="copo-room" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 50vw, 80vw', widths: '500, 800, 1100, 1400', alt: block.settings.image.alt }}
+          {%- else -%}
+            {% render 'copo-placeholder', variant: 'room-on', label: 'Provisional · foto real en esta estancia' %}
+          {%- endif -%}
+          {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption | escape }}</figcaption>{%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Copo · Galería de ambientes",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "En cada rincón" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Ideas para cada <em>habitación</em>" },
+    { "type": "richtext", "id": "text", "label": "Texto" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "room",
+      "name": "Foto",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen", "info": "Usa solo fotos propias o con permiso de uso del proveedor." },
+        { "type": "text", "id": "caption", "label": "Etiqueta", "default": "Salón" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Copo · Galería de ambientes",
+      "blocks": [
+        { "type": "room", "settings": { "caption": "Salón" } },
+        { "type": "room", "settings": { "caption": "Dormitorio" } },
+        { "type": "room", "settings": { "caption": "Habitación infantil" } },
+        { "type": "room", "settings": { "caption": "Noche de película" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,142 @@
+/*
+ * Copo & Co. — plantilla generada para el tema. Editable desde el editor de temas de Shopify.
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_1": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_2": {
+          "type": "price",
+          "settings": {}
+        },
+        "copo_highlights_3": {
+          "type": "copo_highlights",
+          "settings": {
+            "icon": "check",
+            "fallback": ""
+          }
+        },
+        "variant_picker_4": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_5": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_6": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "copo_assurance_7": {
+          "type": "copo_assurance",
+          "settings": {
+            "show_secure": true,
+            "extra_icon": "chat",
+            "extra": ""
+          }
+        },
+        "description_8": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Envíos y devoluciones",
+            "icon": "truck",
+            "content": "<p>Consulta plazos, costes y cómo ejercer tu derecho de desistimiento en nuestra página de envíos y devoluciones.</p>"
+          }
+        },
+        "share_10": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir"
+          }
+        }
+      },
+      "block_order": [
+        "title_1",
+        "price_2",
+        "copo_highlights_3",
+        "variant_picker_4",
+        "quantity_selector_5",
+        "buy_buttons_6",
+        "copo_assurance_7",
+        "description_8",
+        "collapsible_tab_9",
+        "share_10"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "thumbnail_slider",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "padding_top": 24,
+        "padding_bottom": 48
+      }
+    },
+    "details": {
+      "type": "copo-product-details",
+      "settings": {
+        "eyebrow": "Todos los detalles",
+        "heading": "Lo que necesitas saber",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Combina bien con",
+        "heading_size": "h1",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-2",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "sticky": {
+      "type": "copo-sticky-atc",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "details",
+    "disclosures",
+    "related-products",
+    "sticky"
+  ]
+}

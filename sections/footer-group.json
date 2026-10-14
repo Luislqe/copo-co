@@ -1,0 +1,57 @@
+/*
+ * Copo & Co. — plantilla generada para el tema. Editable desde el editor de temas de Shopify.
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand": {
+          "type": "text",
+          "settings": {
+            "heading": "Copo &amp; Co.",
+            "subtext": "<p>Iluminación y decoración para que la Navidad empiece en casa.</p>"
+          }
+        },
+        "shop": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Tienda",
+            "menu": "main-menu"
+          }
+        },
+        "help": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Ayuda",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "brand",
+        "shop",
+        "help"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "newsletter_enable": true,
+        "newsletter_heading": "Recibe ideas y novedades",
+        "enable_follow_on_shop": false,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 64,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -1,0 +1,96 @@
+{%- liquid
+  assign has_real = false
+  if section.settings.image_before != blank and section.settings.image_after != blank
+    assign has_real = true
+  endif
+-%}
+{%- unless has_real == false and section.settings.hide_without_images and request.design_mode == false -%}
+  <section
+    id="CopoCompare-{{ section.id }}"
+    class="copo-compare-section copo-section color-{{ section.settings.color_scheme }} gradient{% if section.settings.glow %} copo-glow{% endif %}"
+  >
+    <div class="page-width">
+      {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+        <div class="copo-section__head copo-section__head--center">
+          {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+          {%- if section.settings.heading != blank -%}<h2 class="copo-section__title h1">{{ section.settings.heading }}</h2>{%- endif -%}
+          {%- if section.settings.text != blank -%}<div class="copo-lede center" style="margin-inline:auto">{{ section.settings.text }}</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <copo-compare class="copo-compare" style="--copo-ratio: {{ section.settings.ratio }}; --copo-ratio-mobile: {{ section.settings.ratio_mobile }};">
+        <div class="copo-compare__layer copo-compare__layer--before">
+          {%- if section.settings.image_before != blank -%}
+            {{ section.settings.image_before | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1320px) 1240px, 100vw', widths: '750, 1100, 1500, 2000', alt: section.settings.image_before.alt }}
+          {%- else -%}
+            {% render 'copo-placeholder', variant: 'room-off', label: 'Ilustración provisional' %}
+          {%- endif -%}
+        </div>
+        <div class="copo-compare__layer copo-compare__layer--after">
+          {%- if section.settings.image_after != blank -%}
+            {{ section.settings.image_after | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '(min-width: 1320px) 1240px, 100vw', widths: '750, 1100, 1500, 2000', alt: section.settings.image_after.alt }}
+          {%- else -%}
+            {% render 'copo-placeholder', variant: 'room-on', label: 'Ilustración provisional · no es el resultado real' %}
+          {%- endif -%}
+        </div>
+        <span class="copo-compare__tag copo-compare__tag--before">{{ section.settings.label_before | escape }}</span>
+        <span class="copo-compare__tag copo-compare__tag--after">{{ section.settings.label_after | escape }}</span>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          aria-label="Desliza para comparar: {{ section.settings.label_before | escape }} / {{ section.settings.label_after | escape }}"
+        >
+        <span class="copo-compare__handle" aria-hidden="true"></span>
+      </copo-compare>
+
+      {%- unless has_real -%}
+        <p class="copo-compare-section__notice">{% render 'copo-icon', icon: 'sparkle' %}Ilustración provisional: no muestra el resultado real del producto. Sustitúyela por dos fotos reales.</p>
+      {%- endunless -%}
+      {%- if section.settings.caption != blank -%}
+        <p class="copo-compare-section__caption">{{ section.settings.caption | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <div class="center" style="margin-top: 3.2rem;">
+          <a class="button button--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label | escape }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Copo · Antes / después",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Inspiración" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "La misma habitación, <em>otra noche</em>" },
+    { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Desliza para ver la diferencia entre la luz de siempre y un ambiente pensado para estas fiestas.</p>" },
+    { "type": "image_picker", "id": "image_before", "label": "Foto 'antes' (luz normal)", "info": "Misma habitación y mismo encuadre que la foto 'después'." },
+    { "type": "image_picker", "id": "image_after", "label": "Foto 'después' (con el producto)", "info": "Foto real del producto funcionando. No uses retoques que exageren el efecto." },
+    { "type": "text", "id": "label_before", "label": "Etiqueta 'antes'", "default": "Luz de siempre" },
+    { "type": "text", "id": "label_after", "label": "Etiqueta 'después'", "default": "Con Copo & Co." },
+    { "type": "text", "id": "caption", "label": "Nota al pie", "info": "Ej.: 'Foto real sin retocar. El efecto depende de la distancia al techo y de la oscuridad de la habitación.'" },
+    { "type": "select", "id": "ratio", "label": "Proporción (escritorio)", "default": "16 / 9", "options": [
+      { "value": "16 / 9", "label": "16:9" },
+      { "value": "16 / 10", "label": "16:10" },
+      { "value": "4 / 3", "label": "4:3" }
+    ] },
+    { "type": "select", "id": "ratio_mobile", "label": "Proporción (móvil)", "default": "4 / 5", "options": [
+      { "value": "4 / 5", "label": "4:5" },
+      { "value": "1 / 1", "label": "1:1" },
+      { "value": "9 / 16", "label": "9:16" }
+    ] },
+    { "type": "text", "id": "button_label", "label": "Botón (opcional)" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón" },
+    { "type": "checkbox", "id": "hide_without_images", "label": "Ocultar en la tienda hasta subir las dos fotos", "default": false, "info": "Recomendado activarlo antes del lanzamiento si aún no tienes fotos reales." },
+    { "type": "checkbox", "id": "glow", "label": "Resplandor dorado de fondo", "default": false },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-3" }
+  ],
+  "presets": [{ "name": "Copo · Antes / después" }]
+}
+{% endschema %}

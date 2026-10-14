@@ -1,0 +1,370 @@
+/*
+ * Copo & Co. — plantilla generada para el tema. Editable desde el editor de temas de Shopify.
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_1": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_2": {
+          "type": "price",
+          "settings": {}
+        },
+        "copo_highlights_3": {
+          "type": "copo_highlights",
+          "settings": {
+            "icon": "check",
+            "fallback": ""
+          }
+        },
+        "variant_picker_4": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_5": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_6": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "copo_assurance_7": {
+          "type": "copo_assurance",
+          "settings": {
+            "show_secure": true,
+            "extra_icon": "chat",
+            "extra": ""
+          }
+        },
+        "description_8": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Envíos y devoluciones",
+            "icon": "truck",
+            "content": "<p>Consulta plazos, costes y cómo ejercer tu derecho de desistimiento en nuestra página de envíos y devoluciones.</p>"
+          }
+        },
+        "share_10": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartir"
+          }
+        }
+      },
+      "block_order": [
+        "title_1",
+        "price_2",
+        "copo_highlights_3",
+        "variant_picker_4",
+        "quantity_selector_5",
+        "buy_buttons_6",
+        "copo_assurance_7",
+        "description_8",
+        "collapsible_tab_9",
+        "share_10"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "thumbnail_slider",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "padding_top": 24,
+        "padding_bottom": 48
+      }
+    },
+    "benefits": {
+      "type": "copo-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Ambiente al instante",
+            "text": "Cambia la sensación de la habitación en cuanto apagas la luz principal."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "plug",
+            "title": "Enchufar y listo",
+            "text": "Se conecta directamente a la corriente."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "home",
+            "title": "Salón, dormitorio o cuarto infantil",
+            "text": "Pensado para disfrutarlo en casa."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "gift",
+            "title": "Un regalo con efecto",
+            "text": "Una idea original para estas fiestas."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
+      "settings": {
+        "eyebrow": "Por qué te va a gustar",
+        "heading": "Más que una luz: <em>un ambiente</em>",
+        "style": "stacked",
+        "compact": false,
+        "mobile_scroll": true,
+        "center": true,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "compare": {
+      "type": "copo-compare",
+      "settings": {
+        "eyebrow": "Míralo funcionando",
+        "heading": "Antes y <em>después</em>",
+        "text": "<p>Desliza para comparar la misma habitación con la luz de siempre y con el proyector encendido.</p>",
+        "label_before": "Luz de siempre",
+        "label_after": "Proyector encendido",
+        "caption": "",
+        "ratio": "16 / 9",
+        "ratio_mobile": "4 / 5",
+        "hide_without_images": false,
+        "glow": true,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "rooms": {
+      "type": "copo-rooms",
+      "blocks": {
+        "room_1": {
+          "type": "room",
+          "settings": {
+            "caption": "Salón"
+          }
+        },
+        "room_2": {
+          "type": "room",
+          "settings": {
+            "caption": "Dormitorio"
+          }
+        },
+        "room_3": {
+          "type": "room",
+          "settings": {
+            "caption": "Habitación infantil"
+          }
+        },
+        "room_4": {
+          "type": "room",
+          "settings": {
+            "caption": "Noche de película"
+          }
+        }
+      },
+      "block_order": [
+        "room_1",
+        "room_2",
+        "room_3",
+        "room_4"
+      ],
+      "settings": {
+        "eyebrow": "En cada rincón",
+        "heading": "Así queda en <em>casa</em>",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "steps": {
+      "type": "copo-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Colócalo",
+            "text": "Busca una superficie estable cerca de un enchufe, orientada hacia el techo o la pared."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Enciéndelo",
+            "text": "Conéctalo a la corriente y enciéndelo según las instrucciones del producto."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Apaga la luz",
+            "text": "Cuanto más oscura esté la habitación, más se aprecia el ambiente."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "eyebrow": "Así de sencillo",
+        "heading": "Ambiente navideño en <em>tres pasos</em>",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "details": {
+      "type": "copo-product-details",
+      "settings": {
+        "eyebrow": "Todos los detalles",
+        "heading": "Ficha técnica",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "bundle": {
+      "type": "copo-bundle",
+      "settings": {
+        "eyebrow": "Combínalo",
+        "heading": "Completa <em>el ambiente</em>",
+        "text": "<p>Añade otros detalles y llévatelo todo con un solo clic.</p>",
+        "include_current": true,
+        "preselect": true,
+        "summary_title": "Tu selección",
+        "offer_text": "",
+        "button_label": "Añadir la selección al carrito",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Necesita pilas o va enchufado?",
+            "icon": "none",
+            "row_content": "<p>Se conecta a la corriente. En el apartado «Corriente e instalación» tienes el voltaje y el tipo de enchufe.</p>"
+          }
+        },
+        "collapsible_row_2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué incluye la caja?",
+            "icon": "none",
+            "row_content": "<p>Lo detallamos en el apartado «Qué incluye la caja» de esta misma página.</p>"
+          }
+        },
+        "collapsible_row_3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuánto tarda en llegar mi pedido?",
+            "icon": "none",
+            "row_content": "<p>El plazo estimado de entrega aparece en la ficha de cada producto y en nuestra página de envíos. Si tienes una fecha importante, escríbenos antes de comprar y te diremos si llegamos a tiempo.</p>"
+          }
+        },
+        "collapsible_row_4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo devolver un producto?",
+            "icon": "none",
+            "row_content": "<p>Sí. Dispones de 14 días naturales desde que recibes tu pedido para desistir de la compra. Encontrarás todos los pasos y condiciones en nuestra página de envíos y devoluciones.</p>"
+          }
+        },
+        "collapsible_row_5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Es seguro pagar en la tienda?",
+            "icon": "none",
+            "row_content": "<p>El pago se realiza en el checkout de Shopify, con conexión cifrada. En ese paso verás los métodos de pago disponibles.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_1",
+        "collapsible_row_2",
+        "collapsible_row_3",
+        "collapsible_row_4",
+        "collapsible_row_5"
+      ],
+      "settings": {
+        "caption": "Antes de comprar",
+        "heading": "Preguntas frecuentes",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Combina bien con",
+        "heading_size": "h1",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-2",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "sticky": {
+      "type": "copo-sticky-atc",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "benefits",
+    "compare",
+    "rooms",
+    "steps",
+    "details",
+    "disclosures",
+    "bundle",
+    "faq",
+    "related-products",
+    "sticky"
+  ]
+}

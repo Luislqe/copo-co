@@ -1,0 +1,73 @@
+{%- liquid
+  assign items_count = 0
+  assign is_product_page = false
+  if template.name == 'product' and section.settings.include_current and product != blank
+    assign is_product_page = true
+  endif
+-%}
+<section id="CopoBundle-{{ section.id }}" class="copo-bundle copo-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+      <div class="copo-section__head">
+        {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="copo-section__title h1">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="copo-lede">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <copo-bundle class="copo-bundle__grid" data-currency="{{ cart.currency.iso_code }}">
+      <ul class="copo-bundle__items" role="list">
+        {%- if is_product_page -%}
+          {%- assign items_count = items_count | plus: 1 -%}
+          {% render 'copo-bundle-item', item: product, section_id: section.id, checked: true, label: 'Este producto' %}
+        {%- endif -%}
+        {%- for item in section.settings.products -%}
+          {%- unless is_product_page and item.id == product.id -%}
+            {%- assign items_count = items_count | plus: 1 -%}
+            {% render 'copo-bundle-item', item: item, section_id: section.id, checked: section.settings.preselect %}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- if items_count == 0 -%}
+          <li class="copo-details__pending">Elige de 2 a 4 productos en la configuración de esta sección.</li>
+        {%- endif -%}
+      </ul>
+
+      <aside class="copo-bundle__summary" aria-labelledby="CopoBundleSummary-{{ section.id }}">
+        <h3 id="CopoBundleSummary-{{ section.id }}">{{ section.settings.summary_title | escape }}</h3>
+        {%- if section.settings.offer_text != blank -%}
+          <p class="copo-bundle__offer">{{ section.settings.offer_text | escape }}</p>
+        {%- endif -%}
+        <div class="copo-bundle__total">
+          <span><span data-copo-count>0</span> productos</span>
+          <strong data-copo-total aria-live="polite">{{ 0 | money }}</strong>
+        </div>
+        <button type="button" class="button button--primary button--full-width" data-copo-bundle-add disabled>
+          {{ section.settings.button_label | escape }}
+        </button>
+        <p class="copo-error" data-copo-error role="alert" hidden></p>
+        <p class="copo-bundle__fine">El total se calcula con los precios actuales. Los descuentos y el envío se muestran en el carrito.</p>
+      </aside>
+    </copo-bundle>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Copo · Completa el ambiente",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Combínalo" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Completa <em>el ambiente</em>" },
+    { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Elige lo que quieras añadir y llévatelo todo con un solo clic.</p>" },
+    { "type": "product_list", "id": "products", "label": "Productos", "limit": 4 },
+    { "type": "checkbox", "id": "include_current", "label": "En fichas de producto, incluir el producto actual", "default": true },
+    { "type": "checkbox", "id": "preselect", "label": "Marcar todos por defecto", "default": true },
+    { "type": "text", "id": "summary_title", "label": "Título del resumen", "default": "Tu selección" },
+    { "type": "text", "id": "offer_text", "label": "Texto de oferta (opcional)", "info": "Solo si has creado un descuento automático real en Shopify (Descuentos). Ej.: '10 % de descuento al comprar 2 o más'." },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Añadir la selección al carrito" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-2" }
+  ],
+  "presets": [{ "name": "Copo · Completa el ambiente" }]
+}
+{% endschema %}

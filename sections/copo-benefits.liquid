@@ -1,0 +1,82 @@
+{%- liquid
+  assign cols = section.blocks.size
+  if cols > 4
+    assign cols = 4
+  endif
+  if cols < 1
+    assign cols = 1
+  endif
+-%}
+<section
+  id="CopoBenefits-{{ section.id }}"
+  class="copo-benefits copo-benefits--{{ section.settings.style }}{% if section.settings.mobile_scroll %} copo-benefits--scroll{% endif %} color-{{ section.settings.color_scheme }} gradient {% if section.settings.compact %}copo-section--tight{% else %}copo-section{% endif %}"
+>
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+      <div class="copo-section__head{% if section.settings.center %} copo-section__head--center{% endif %}">
+        {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="copo-section__title h2">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="copo-lede{% if section.settings.center %} center{% endif %}">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <ul class="copo-benefits__list" role="list" style="--copo-cols: {{ cols }};">
+      {%- for block in section.blocks -%}
+        <li class="copo-benefit" {{ block.shopify_attributes }}>
+          <span class="copo-benefit__icon">{% render 'copo-icon', icon: block.settings.icon %}</span>
+          <div>
+            <h3 class="copo-benefit__title">{{ block.settings.title | escape }}</h3>
+            {%- if block.settings.text != blank -%}
+              <p class="copo-benefit__text">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Copo · Beneficios",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título" },
+    { "type": "richtext", "id": "text", "label": "Texto" },
+    { "type": "checkbox", "id": "center", "label": "Centrar cabecera", "default": true },
+    { "type": "select", "id": "style", "label": "Estilo", "default": "row", "options": [
+      { "value": "row", "label": "Icono a la izquierda" },
+      { "value": "stacked", "label": "Icono arriba" },
+      { "value": "compact", "label": "Compacto (barra de confianza)" }
+    ] },
+    { "type": "checkbox", "id": "compact", "label": "Menos espacio vertical", "default": false },
+    { "type": "checkbox", "id": "mobile_scroll", "label": "Desplazamiento horizontal en móvil", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "default": "star", "options": [{"value": "star", "label": "Estrella"}, {"value": "sparkle", "label": "Destello"}, {"value": "snowflake", "label": "Copo de nieve"}, {"value": "plug", "label": "Enchufe"}, {"value": "timer", "label": "Temporizador"}, {"value": "gift", "label": "Regalo"}, {"value": "truck", "label": "Envío"}, {"value": "shield", "label": "Escudo"}, {"value": "return", "label": "Devolución"}, {"value": "lock", "label": "Candado"}, {"value": "home", "label": "Casa"}, {"value": "bulb", "label": "Bombilla"}, {"value": "box", "label": "Caja"}, {"value": "chat", "label": "Mensaje"}, {"value": "moon", "label": "Luna"}, {"value": "check", "label": "Check"}, {"value": "ruler", "label": "Medidas"}, {"value": "leaf", "label": "Hoja"}] },
+        { "type": "text", "id": "title", "label": "Título", "default": "Beneficio" },
+        { "type": "textarea", "id": "text", "label": "Texto", "info": "No incluyas plazos, garantías ni datos técnicos que no hayas verificado." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Copo · Beneficios",
+      "settings": { "style": "compact", "compact": true },
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "lock", "title": "Pago seguro", "text": "Checkout cifrado de Shopify." } },
+        { "type": "benefit", "settings": { "icon": "return", "title": "14 días para desistir", "text": "Tu derecho de desistimiento, explicado con claridad." } },
+        { "type": "benefit", "settings": { "icon": "chat", "title": "Te ayudamos", "text": "Escríbenos y te respondemos personalmente." } },
+        { "type": "benefit", "settings": { "icon": "gift", "title": "Pensado para regalar", "text": "Ideas para sorprender estas fiestas." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

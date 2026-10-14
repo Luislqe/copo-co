@@ -1,0 +1,25 @@
+{%- comment -%}
+  Barra fija de compra en móvil. Reutiliza el botón principal de la ficha
+  (main-product), así que respeta variantes, stock y el carrito lateral.
+{%- endcomment -%}
+{%- if settings.copo_sticky_atc and product != blank -%}
+  <copo-sticky-atc aria-label="Compra rápida">
+    <div class="copo-sticky__info">
+      <span class="copo-sticky__title">{{ product.title | escape }}</span>
+      <span class="copo-sticky__price" data-copo-sticky-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+    </div>
+    <button type="button" class="button button--primary"><span>{{ 'products.product.add_to_cart' | t }}</span></button>
+  </copo-sticky-atc>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Copo · Barra fija de compra",
+  "tag": "div",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Aparece en móvil cuando el botón principal sale de la pantalla. Se activa/desactiva en Ajustes del tema > Copo & Co." }
+  ],
+  "presets": [{ "name": "Copo · Barra fija de compra" }]
+}
+{% endschema %}

@@ -1,0 +1,400 @@
+/*
+ * Copo & Co. — plantilla generada para el tema. Editable desde el editor de temas de Shopify.
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "copo-hero",
+      "blocks": {
+        "chip_1": {
+          "type": "chip",
+          "settings": {
+            "icon": "lock",
+            "text": "Pago seguro"
+          }
+        },
+        "chip_2": {
+          "type": "chip",
+          "settings": {
+            "icon": "return",
+            "text": "14 días para desistir"
+          }
+        },
+        "chip_3": {
+          "type": "chip",
+          "settings": {
+            "icon": "gift",
+            "text": "Ideas para regalar"
+          }
+        }
+      },
+      "block_order": [
+        "chip_1",
+        "chip_2",
+        "chip_3"
+      ],
+      "settings": {
+        "eyebrow": "Navidad 2026",
+        "heading": "La Navidad empieza <em>en casa</em>",
+        "heading_tag": "h1",
+        "text": "Luces, proyectores y detalles para convertir cualquier habitación en un rincón acogedor estas fiestas.",
+        "button_label_1": "Descubrir la colección",
+        "button_link_1": "shopify://collections/all",
+        "button_label_2": "Ver el proyector",
+        "button_link_2": "",
+        "overlay": 55,
+        "height": "large",
+        "alignment": "left",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "trust": {
+      "type": "copo-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "lock",
+            "title": "Pago seguro",
+            "text": "Checkout cifrado de Shopify."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "return",
+            "title": "14 días para desistir",
+            "text": "Tu derecho de desistimiento, explicado con claridad."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "chat",
+            "title": "Atención cercana",
+            "text": "Escríbenos y te respondemos personalmente."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "gift",
+            "title": "Pensado para regalar",
+            "text": "Ideas originales para estas fiestas."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
+      "settings": {
+        "style": "compact",
+        "compact": true,
+        "mobile_scroll": true,
+        "center": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "star": {
+      "type": "copo-star-product",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "plug",
+            "title": "Enchufar y listo",
+            "text": "Se conecta directamente a la corriente."
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "home",
+            "title": "Para cualquier habitación",
+            "text": "Salón, dormitorio o habitación infantil."
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "gift",
+            "title": "Un regalo que se nota",
+            "text": "Para quien ya lo tiene todo."
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3"
+      ],
+      "settings": {
+        "badge": "Nuestro favorito",
+        "eyebrow": "El producto estrella",
+        "heading": "Tu techo, convertido en <em>noche de invierno</em>",
+        "text": "<p>Enchúfalo, apaga la luz principal y deja que la habitación cambie por completo. Una forma sencilla de crear ambiente para cenas, tardes de película o la hora de dormir de los peques.</p>",
+        "show_price": true,
+        "button_label": "Descubrir el efecto",
+        "quick_add": true,
+        "glow": true,
+        "media_position": "left",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "categories": {
+      "type": "copo-categories",
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "title": "Iluminación navideña",
+            "text": "Proyectores, guirnaldas y luces LED.",
+            "wide": false
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "title": "Decoración para el hogar",
+            "text": "Detalles para el salón y los dormitorios.",
+            "wide": false
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "title": "Árbol de Navidad",
+            "text": "Adornos y accesorios.",
+            "wide": false
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "title": "Regalos originales",
+            "text": "Ideas para sorprender.",
+            "wide": false
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "category_2",
+        "category_3",
+        "category_4"
+      ],
+      "settings": {
+        "eyebrow": "Explora",
+        "heading": "Todo para una casa <em>con ambiente</em>",
+        "columns": 4,
+        "cta": "Ver todo",
+        "mobile_scroll": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Los favoritos de la temporada",
+        "heading_size": "h1",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-2",
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "quick_add": "standard",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "compare": {
+      "type": "copo-compare",
+      "settings": {
+        "eyebrow": "Inspiración",
+        "heading": "La misma habitación, <em>otra noche</em>",
+        "text": "<p>Desliza para ver la diferencia entre la luz de siempre y un ambiente pensado para estas fiestas.</p>",
+        "label_before": "Luz de siempre",
+        "label_after": "Con Copo & Co.",
+        "ratio": "16 / 9",
+        "ratio_mobile": "4 / 5",
+        "hide_without_images": false,
+        "glow": true,
+        "color_scheme": "scheme-3",
+        "button_label": "Ver el proyector",
+        "button_link": ""
+      }
+    },
+    "rooms": {
+      "type": "copo-rooms",
+      "blocks": {
+        "room_1": {
+          "type": "room",
+          "settings": {
+            "caption": "Salón"
+          }
+        },
+        "room_2": {
+          "type": "room",
+          "settings": {
+            "caption": "Dormitorio"
+          }
+        },
+        "room_3": {
+          "type": "room",
+          "settings": {
+            "caption": "Habitación infantil"
+          }
+        },
+        "room_4": {
+          "type": "room",
+          "settings": {
+            "caption": "Noche de película"
+          }
+        }
+      },
+      "block_order": [
+        "room_1",
+        "room_2",
+        "room_3",
+        "room_4"
+      ],
+      "settings": {
+        "eyebrow": "En cada rincón",
+        "heading": "Ideas para cada <em>habitación</em>",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "bundle": {
+      "type": "copo-bundle",
+      "settings": {
+        "eyebrow": "Combínalo",
+        "heading": "Completa <em>el ambiente</em>",
+        "text": "<p>Elige lo que quieras añadir y llévatelo todo con un solo clic.</p>",
+        "include_current": true,
+        "preselect": true,
+        "summary_title": "Tu selección",
+        "offer_text": "",
+        "button_label": "Añadir la selección al carrito",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuánto tarda en llegar mi pedido?",
+            "icon": "none",
+            "row_content": "<p>El plazo estimado de entrega aparece en la ficha de cada producto y en nuestra página de envíos. Si tienes una fecha importante, escríbenos antes de comprar y te diremos si llegamos a tiempo.</p>"
+          }
+        },
+        "collapsible_row_2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo devolver un producto?",
+            "icon": "none",
+            "row_content": "<p>Sí. Dispones de 14 días naturales desde que recibes tu pedido para desistir de la compra. Encontrarás todos los pasos y condiciones en nuestra página de envíos y devoluciones.</p>"
+          }
+        },
+        "collapsible_row_3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Es seguro pagar en la tienda?",
+            "icon": "none",
+            "row_content": "<p>El pago se realiza en el checkout de Shopify, con conexión cifrada. En ese paso verás los métodos de pago disponibles.</p>"
+          }
+        },
+        "collapsible_row_4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo sé si un producto funciona con mis enchufes?",
+            "icon": "none",
+            "row_content": "<p>En la ficha de cada producto eléctrico indicamos el voltaje, el tipo de enchufe y lo que incluye la caja. Si tienes dudas, escríbenos antes de comprar.</p>"
+          }
+        },
+        "collapsible_row_5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo puedo contactar con vosotros?",
+            "icon": "none",
+            "row_content": "<p>Desde nuestra página de contacto. Respondemos personalmente a cada mensaje.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_1",
+        "collapsible_row_2",
+        "collapsible_row_3",
+        "collapsible_row_4",
+        "collapsible_row_5"
+      ],
+      "settings": {
+        "caption": "Preguntas frecuentes",
+        "heading": "Resolvemos tus dudas",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ideas para una Navidad <em>con ambiente</em>",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_2": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Suscríbete para recibir novedades y propuestas de decoración. Sin spam: puedes darte de baja cuando quieras.</p>"
+          }
+        },
+        "email_form_3": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_1",
+        "paragraph_2",
+        "email_form_3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "star",
+    "categories",
+    "bestsellers",
+    "compare",
+    "rooms",
+    "bundle",
+    "faq",
+    "newsletter"
+  ]
+}

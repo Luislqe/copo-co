@@ -1,0 +1,77 @@
+{%- comment -%}
+  Ficha técnica del producto a partir de metacampos (namespace "custom").
+  Si un metacampo está vacío, su tarjeta no aparece en la tienda; en el editor
+  se muestra un aviso para saber qué falta. Nunca se rellenan datos por defecto.
+{%- endcomment -%}
+{%- liquid
+  assign mf = product.metafields.custom
+  assign cards = 'especificaciones,compatibilidad,contenido_caja,instrucciones,seguridad' | split: ','
+  assign filled = 0
+  for key in cards
+    if mf[key] != blank
+      assign filled = filled | plus: 1
+    endif
+  endfor
+-%}
+{%- if filled > 0 or request.design_mode -%}
+  <section id="CopoDetails-{{ section.id }}" class="copo-details copo-section color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width">
+      <div class="copo-section__head">
+        {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="copo-section__title h1">{{ section.settings.heading }}</h2>
+      </div>
+      <div class="copo-details__grid">
+        {%- for key in cards -%}
+          {%- liquid
+            case key
+              when 'especificaciones'
+                assign title = 'Especificaciones'
+                assign icon = 'ruler'
+              when 'compatibilidad'
+                assign title = 'Corriente e instalación'
+                assign icon = 'plug'
+              when 'contenido_caja'
+                assign title = 'Qué incluye la caja'
+                assign icon = 'box'
+              when 'instrucciones'
+                assign title = 'Instrucciones de uso'
+                assign icon = 'bulb'
+              when 'seguridad'
+                assign title = 'Uso seguro'
+                assign icon = 'shield'
+            endcase
+          -%}
+          {%- if mf[key] != blank -%}
+            <div class="copo-details__card{% if key == 'especificaciones' %} copo-details__card--full{% endif %}">
+              <h3>{% render 'copo-icon', icon: icon %}{{ title }}</h3>
+              <div class="rte">{{ mf[key] | metafield_tag }}</div>
+            </div>
+          {%- elsif request.design_mode -%}
+            <div class="copo-details__card">
+              <h3>{% render 'copo-icon', icon: icon %}{{ title }}</h3>
+              <p class="copo-details__pending">
+                Pendiente: rellena el metacampo <strong>custom.{{ key }}</strong> de este producto con datos verificados del proveedor. Este aviso solo se ve en el editor.
+              </p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Copo · Ficha técnica",
+  "tag": "div",
+  "class": "section",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Lee los metacampos de producto: custom.especificaciones, custom.compatibilidad, custom.contenido_caja, custom.instrucciones y custom.seguridad (tipo 'Texto enriquecido')." },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Todos los detalles" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Lo que necesitas saber" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Copo · Ficha técnica" }]
+}
+{% endschema %}

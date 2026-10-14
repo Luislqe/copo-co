@@ -1,0 +1,47 @@
+{%- comment -%}
+  Copo & Co. — capa de marca sobre Dawn.
+  Se renderiza en layout/theme.liquid justo después de base.css para que
+  sus variables :root sobrescriban las de Dawn.
+  Fuentes: Fraunces e Inter (SIL Open Font License, ver assets/copo-fonts-*-OFL.txt),
+  subconjunto latino + español, alojadas en el propio tema.
+{%- endcomment -%}
+{%- if settings.copo_brand_fonts -%}
+  {% comment %}theme-check-disable AssetPreload{% endcomment %}
+  <link rel="preload" as="font" href="{{ 'copo-fraunces.woff' | asset_url }}" type="font/woff" crossorigin>
+  <link rel="preload" as="font" href="{{ 'copo-inter.woff' | asset_url }}" type="font/woff" crossorigin>
+  {% comment %}theme-check-enable AssetPreload{% endcomment %}
+  {% style %}
+    @font-face {
+      font-family: 'Copo Fraunces';
+      src: url('{{ 'copo-fraunces.woff' | asset_url }}') format('woff');
+      font-weight: 300 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Copo Fraunces';
+      src: url('{{ 'copo-fraunces-italic.woff' | asset_url }}') format('woff');
+      font-weight: 300 600;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Copo Inter';
+      src: url('{{ 'copo-inter.woff' | asset_url }}') format('woff');
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    :root {
+      --font-heading-family: 'Copo Fraunces', Georgia, 'Times New Roman', serif;
+      --font-heading-style: normal;
+      --font-heading-weight: 450;
+      --font-body-family: 'Copo Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-body-style: normal;
+      --font-body-weight: 400;
+      --font-body-weight-bold: 600;
+    }
+  {% endstyle %}
+{%- endif -%}
+{{ 'copo.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'copo.js' | asset_url }}" defer="defer"></script>

@@ -1,0 +1,64 @@
+{%- liquid
+  assign cols = section.blocks.size
+  if cols > 4
+    assign cols = 4
+  endif
+-%}
+<section id="CopoSteps-{{ section.id }}" class="copo-steps copo-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+      <div class="copo-section__head copo-section__head--center">
+        {%- if section.settings.eyebrow != blank -%}<p class="copo-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="copo-section__title h1">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <ol class="copo-steps__list" style="--copo-cols: {{ cols }};">
+      {%- for block in section.blocks -%}
+        <li class="copo-step" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="copo-step__media">
+              {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 33vw, 100vw', widths: '450, 700, 900', alt: block.settings.image.alt }}
+            </div>
+          {%- endif -%}
+          <h3 class="copo-step__title">{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}<p class="copo-step__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Copo · Cómo funciona",
+  "tag": "div",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Así de sencillo" },
+    { "type": "inline_richtext", "id": "heading", "label": "Título", "default": "Ambiente navideño en <em>tres pasos</em>" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Esquema de color", "default": "scheme-2" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen (opcional)" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Paso" },
+        { "type": "textarea", "id": "text", "label": "Texto", "info": "Revísalo con las instrucciones reales del producto." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Copo · Cómo funciona",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Colócalo", "text": "Busca una superficie estable cerca de un enchufe, orientada hacia el techo o la pared." } },
+        { "type": "step", "settings": { "title": "Enciéndelo", "text": "Conéctalo a la corriente y enciéndelo según las instrucciones del producto." } },
+        { "type": "step", "settings": { "title": "Apaga la luz", "text": "Cuanto más oscura esté la habitación, más se aprecia el ambiente." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

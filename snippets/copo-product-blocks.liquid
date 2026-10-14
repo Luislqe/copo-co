@@ -1,0 +1,74 @@
+{%- comment -%}
+  Bloques propios de Copo & Co. para la ficha de producto (main-product).
+  Parámetros: block, product
+{%- endcomment -%}
+{%- case block.type -%}
+  {%- when 'copo_highlights' -%}
+    {%- liquid
+      assign lines = product.metafields.custom.beneficios.value
+      if lines == blank and block.settings.fallback != blank
+        assign lines = block.settings.fallback | newline_to_br | split: '<br />'
+      endif
+    -%}
+    {%- if lines != blank -%}
+      <ul class="copo-highlights" role="list" {{ block.shopify_attributes }}>
+        {%- for line in lines limit: 5 -%}
+          {%- assign clean = line | strip -%}
+          {%- if clean != blank -%}
+            <li>{% render 'copo-icon', icon: block.settings.icon %}<span>{{ clean | escape }}</span></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- elsif request.design_mode -%}
+      <p class="copo-details__pending" {{ block.shopify_attributes }}>
+        Pendiente: añade de 3 a 5 beneficios en el metacampo <strong>custom.beneficios</strong> (lista de textos de una línea). Este aviso solo se ve en el editor.
+      </p>
+    {%- endif -%}
+
+  {%- when 'copo_assurance' -%}
+    {%- liquid
+      assign ship_min = settings.copo_ship_min_days
+      assign ship_max = settings.copo_ship_max_days
+      assign custom_ship = product.metafields.custom.plazo_entrega
+    -%}
+    <div class="copo-assurance" {{ block.shopify_attributes }}>
+      {%- if custom_ship != blank -%}
+        <div class="copo-assurance__row">
+          {% render 'copo-icon', icon: 'truck' %}
+          <span><strong>Entrega:</strong> {{ custom_ship | escape }}</span>
+        </div>
+      {%- elsif ship_min != blank and ship_max != blank -%}
+        <div class="copo-assurance__row">
+          {% render 'copo-icon', icon: 'truck' %}
+          <span>
+            <strong>Entrega estimada:</strong>
+            {{ ship_min }}–{{ ship_max }} días hábiles
+            {%- if settings.copo_ship_note != blank %} · {{ settings.copo_ship_note | escape }}{% endif -%}
+          </span>
+        </div>
+      {%- elsif request.design_mode -%}
+        <p class="copo-details__pending">Pendiente: indica el plazo real de entrega en Ajustes del tema &gt; Copo &amp; Co. (o en el metacampo custom.plazo_entrega de este producto).</p>
+      {%- endif -%}
+      {%- if settings.copo_returns_text != blank -%}
+        <div class="copo-assurance__row">
+          {% render 'copo-icon', icon: 'return' %}
+          <span>
+            {{ settings.copo_returns_text | escape }}
+            {%- if settings.copo_returns_page != blank %} · <a href="{{ settings.copo_returns_page.url }}">Ver condiciones</a>{% endif -%}
+          </span>
+        </div>
+      {%- endif -%}
+      {%- if block.settings.show_secure -%}
+        <div class="copo-assurance__row">
+          {% render 'copo-icon', icon: 'lock' %}
+          <span>Pago seguro en el checkout de Shopify</span>
+        </div>
+      {%- endif -%}
+      {%- if block.settings.extra != blank -%}
+        <div class="copo-assurance__row">
+          {% render 'copo-icon', icon: block.settings.extra_icon %}
+          <span>{{ block.settings.extra }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+{%- endcase -%}

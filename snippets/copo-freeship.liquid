@@ -1,0 +1,23 @@
+{%- comment -%}
+  Barra de envío gratis. Solo aparece si se ha definido un umbral en
+  Ajustes del tema > Copo & Co. (debe coincidir con la tarifa de envío gratis
+  configurada en Ajustes > Envíos y entregas).
+{%- endcomment -%}
+{%- if settings.copo_free_shipping_threshold != blank and cart.item_count > 0 -%}
+  {%- liquid
+    assign threshold = settings.copo_free_shipping_threshold | times: 100
+    assign remaining = threshold | minus: cart.total_price
+    assign progress = cart.total_price | times: 100 | divided_by: threshold
+    if progress > 100
+      assign progress = 100
+    endif
+  -%}
+  <div class="copo-freeship" role="status">
+    {%- if remaining > 0 -%}
+      <p>Te faltan <strong>{{ remaining | money }}</strong> para el envío gratis.</p>
+    {%- else -%}
+      <p><strong>¡Tu pedido tiene envío gratis!</strong></p>
+    {%- endif -%}
+    <div class="copo-freeship__bar" aria-hidden="true"><span style="--copo-progress: {{ progress }}%;"></span></div>
+  </div>
+{%- endif -%}

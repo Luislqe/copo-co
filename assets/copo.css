@@ -1,0 +1,685 @@
+/* =========================================================================
+   Copo & Co. — sistema de diseño
+   Capa sobre Dawn 16. Los colores de cada sección vienen de los esquemas de
+   color del tema (Marfil, Crema, Noche, Pino, Oro suave); aquí solo se
+   definen tokens de marca, refinamientos tipográficos y las secciones copo-*.
+   ========================================================================= */
+
+:root {
+  --copo-noche: #14161c;
+  --copo-pino: #1f2b26;
+  --copo-marfil: #fbf8f2;
+  --copo-crema: #f1e8da;
+  --copo-oro: #d8b477;
+  --copo-oro-texto: #8a6730; /* oro legible sobre fondos claros (AA) */
+  --copo-arandano: #7a2e2e;
+  --copo-radius: 14px;
+  --copo-radius-sm: 10px;
+  --copo-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --copo-space-section: clamp(5.6rem, 9vw, 11.2rem);
+  --copo-gutter: clamp(1.6rem, 4vw, 4rem);
+}
+
+/* ---------- Tipografía ---------- */
+h1, h2, h3, h4, .h0, .h1, .h2, .h3, .h4 {
+  letter-spacing: -0.012em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.h0 { line-height: 1.04; letter-spacing: -0.02em; }
+body { letter-spacing: 0.01rem; }
+p, .rte { text-wrap: pretty; }
+em, .copo-em { font-family: var(--font-heading-family); font-style: italic; }
+
+.copo-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0 1.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--copo-oro-texto);
+}
+.color-scheme-3 .copo-eyebrow,
+.color-scheme-4 .copo-eyebrow,
+.copo-on-dark .copo-eyebrow { color: var(--copo-oro); }
+.copo-eyebrow::before {
+  content: '';
+  width: 2.4rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.copo-lede {
+  font-size: clamp(1.6rem, 1.4rem + 0.5vw, 1.9rem);
+  line-height: 1.6;
+  color: rgba(var(--color-foreground), 0.82);
+  max-width: 60ch;
+}
+
+/* ---------- Botones ---------- */
+.button,
+.shopify-payment-button__button--unbranded {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-height: 5rem;
+  padding: 0 3.2rem;
+  transition: transform 0.25s var(--copo-ease), box-shadow 0.25s var(--copo-ease), background-color 0.25s var(--copo-ease);
+}
+.button:not([disabled]):hover { transform: translateY(-1px); }
+.button:focus-visible,
+.copo-focus:focus-visible {
+  outline: 2px solid var(--copo-oro);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+.button--full-width { min-height: 5.6rem; }
+.product-form__submit { font-size: 1.6rem; }
+
+/* ---------- Anuncios y cabecera ---------- */
+.announcement-bar__message {
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+.header__heading-link { padding: 0.4rem 0; }
+.copo-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: rgb(var(--color-foreground));
+  line-height: 1;
+}
+.copo-wordmark__flake {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--copo-oro-texto);
+}
+.color-scheme-3 .copo-wordmark__flake,
+.color-scheme-4 .copo-wordmark__flake { color: var(--copo-oro); }
+.copo-wordmark__text {
+  font-family: var(--font-heading-family);
+  font-size: 2.6rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.copo-wordmark__amp {
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 0.12em;
+  color: var(--copo-oro-texto);
+}
+.color-scheme-3 .copo-wordmark__amp,
+.color-scheme-4 .copo-wordmark__amp { color: var(--copo-oro); }
+
+/* ---------- Tarjetas de producto ---------- */
+.card-wrapper .card__heading { font-family: var(--font-body-family); font-weight: 500; font-size: 1.55rem; line-height: 1.35; }
+.card-wrapper .price { font-weight: 600; }
+.card__media .media img { transition: transform 0.6s var(--copo-ease); }
+.card-wrapper:hover .card__media .media img { transform: scale(1.035); }
+.badge { letter-spacing: 0.06em; font-weight: 600; }
+
+/* ---------- Ritmo de secciones propias ---------- */
+.copo-section { padding-block: var(--copo-space-section); }
+.copo-section--tight { padding-block: clamp(3.2rem, 5vw, 5.6rem); }
+.copo-section__head { max-width: 72rem; margin-bottom: clamp(3.2rem, 5vw, 5.6rem); }
+.copo-section__head--center { margin-inline: auto; text-align: center; }
+.copo-section__head--center .copo-eyebrow { justify-content: center; }
+.copo-section__head > :last-child { margin-bottom: 0; }
+.copo-section__title { margin: 0 0 1.6rem; }
+
+.copo-glow {
+  background-image:
+    radial-gradient(60% 50% at 80% 0%, rgba(216, 180, 119, 0.12), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, rgba(216, 180, 119, 0.08), transparent 70%);
+}
+
+/* ---------- Ilustraciones provisionales ---------- */
+.copo-ph { position: relative; width: 100%; height: 100%; overflow: hidden; background: #161a2b; }
+.copo-ph svg { display: block; width: 100%; height: 100%; }
+.copo-ph__label {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #14161c;
+  background: rgba(251, 248, 242, 0.92);
+}
+.copo-ph__label .copo-icon { width: 1.4rem; height: 1.4rem; }
+
+.copo-icon { width: 2.4rem; height: 2.4rem; flex: none; }
+.copo-icon--lg { width: 3.2rem; height: 3.2rem; }
+
+/* =========================================================================
+   HERO
+   ========================================================================= */
+.copo-hero {
+  position: relative;
+  display: grid;
+  min-height: min(88vh, 86rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+.copo-hero--medium { min-height: min(70vh, 68rem); }
+.copo-hero--full { min-height: 100svh; }
+.copo-hero__media,
+.copo-hero__media > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.copo-hero__media img,
+.copo-hero__media video { object-fit: cover; }
+.copo-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 22, 28, 0) 25%, rgba(20, 22, 28, var(--copo-overlay, 0.55)) 100%),
+    linear-gradient(90deg, rgba(20, 22, 28, calc(var(--copo-overlay, 0.55) * 0.8)) 0%, rgba(20, 22, 28, 0) 65%);
+  z-index: 1;
+  pointer-events: none;
+}
+.copo-hero .copo-ph__label { z-index: 2; bottom: auto; top: 1.2rem; }
+.copo-hero__inner {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  width: 100%;
+  padding-block: clamp(4rem, 8vw, 9.6rem) clamp(4rem, 7vw, 8rem);
+}
+.copo-hero--align-center .copo-hero__inner { align-self: center; text-align: center; }
+.copo-hero--align-center .copo-hero__content { margin-inline: auto; }
+.copo-hero--align-center .copo-eyebrow,
+.copo-hero--align-center .copo-hero__buttons,
+.copo-hero--align-center .copo-chips { justify-content: center; }
+.copo-hero__content { max-width: 64rem; color: #f3ecdf; }
+.copo-hero__heading { margin: 0 0 2rem; color: #fbf8f2; font-size: clamp(4rem, 3rem + 4vw, 7.6rem); }
+.copo-hero__heading em { color: var(--copo-oro); }
+.copo-hero__text { font-size: clamp(1.6rem, 1.4rem + 0.5vw, 2rem); line-height: 1.55; margin: 0 0 3.2rem; color: rgba(243, 236, 223, 0.88); max-width: 52ch; }
+.copo-hero--align-center .copo-hero__text { margin-inline: auto; }
+.copo-hero__buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.copo-hero .copo-eyebrow { color: var(--copo-oro); }
+
+.copo-chips { display: flex; flex-wrap: wrap; gap: 0.8rem 2rem; margin-top: 3.2rem; padding: 0; list-style: none; }
+.copo-chips li { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 1.35rem; font-weight: 500; color: rgba(243, 236, 223, 0.9); }
+.copo-chips .copo-icon { width: 2rem; height: 2rem; color: var(--copo-oro); }
+
+@media screen and (max-width: 749px) {
+  .copo-hero { min-height: 82svh; }
+  .copo-hero__media::after {
+    background: linear-gradient(180deg, rgba(20, 22, 28, 0.15) 0%, rgba(20, 22, 28, 0.1) 35%, rgba(20, 22, 28, calc(var(--copo-overlay, 0.55) + 0.3)) 100%);
+  }
+  .copo-hero__buttons .button { flex: 1 1 100%; }
+}
+
+/* =========================================================================
+   BARRA DE CONFIANZA / BENEFICIOS
+   ========================================================================= */
+.copo-benefits__list {
+  display: grid;
+  grid-template-columns: repeat(var(--copo-cols, 4), minmax(0, 1fr));
+  gap: clamp(2rem, 3vw, 4rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.copo-benefit { display: flex; gap: 1.4rem; align-items: flex-start; }
+.copo-benefits--stacked .copo-benefit { flex-direction: column; }
+.copo-benefit__icon {
+  display: grid;
+  place-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  flex: none;
+  color: var(--copo-oro-texto);
+  background: rgba(var(--color-foreground), 0.05);
+}
+.color-scheme-3 .copo-benefit__icon,
+.color-scheme-4 .copo-benefit__icon { color: var(--copo-oro); background: rgba(216, 180, 119, 0.1); }
+.copo-benefit__title { margin: 0 0 0.4rem; font-family: var(--font-body-family); font-size: 1.6rem; font-weight: 600; letter-spacing: 0; line-height: 1.3; }
+.copo-benefit__text { margin: 0; font-size: 1.45rem; line-height: 1.55; color: rgba(var(--color-foreground), 0.75); }
+.copo-benefits--compact .copo-benefit__icon { width: 4rem; height: 4rem; }
+.copo-benefits--compact .copo-benefit__title { font-size: 1.45rem; }
+.copo-benefits--compact .copo-benefit__text { font-size: 1.3rem; }
+
+@media screen and (max-width: 989px) {
+  .copo-benefits__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 749px) {
+  .copo-benefits--scroll .copo-benefits__list {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--copo-gutter);
+    margin-inline: calc(var(--copo-gutter) * -1);
+    padding-inline: var(--copo-gutter);
+    scrollbar-width: none;
+  }
+  .copo-benefits--scroll .copo-benefits__list::-webkit-scrollbar { display: none; }
+  .copo-benefits--scroll .copo-benefit { flex: 0 0 78%; scroll-snap-align: start; }
+  .copo-benefits:not(.copo-benefits--scroll) .copo-benefits__list { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   PRODUCTO ESTRELLA (portada)
+   ========================================================================= */
+.copo-star { overflow: hidden; }
+.copo-star__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(3.2rem, 6vw, 8rem);
+  align-items: center;
+}
+.copo-star--media-right .copo-star__media { order: 2; }
+.copo-star__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--copo-radius);
+  overflow: hidden;
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.55);
+}
+.copo-star__media img,
+.copo-star__media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.copo-star__badge {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  z-index: 2;
+  padding: 0.6rem 1.4rem;
+  border-radius: 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--copo-noche);
+  background: var(--copo-oro);
+}
+.copo-star__title { margin: 0 0 2rem; font-size: clamp(3.4rem, 2.6rem + 2.4vw, 5.6rem); }
+.copo-star__title em { color: var(--copo-oro); }
+.copo-star__text { margin-bottom: 3.2rem; }
+.copo-star__points { display: grid; gap: 1.6rem; margin: 0 0 3.6rem; padding: 0; list-style: none; }
+.copo-star__point { display: flex; gap: 1.4rem; align-items: flex-start; }
+.copo-star__point .copo-icon { color: var(--copo-oro); margin-top: 0.2rem; }
+.color-scheme-1 .copo-star__point .copo-icon,
+.color-scheme-2 .copo-star__point .copo-icon { color: var(--copo-oro-texto); }
+.copo-star__point strong { display: block; font-weight: 600; margin-bottom: 0.2rem; }
+.copo-star__point span { color: rgba(var(--color-foreground), 0.75); font-size: 1.45rem; line-height: 1.5; }
+.copo-star__buy { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2.4rem; }
+.copo-star__price { font-family: var(--font-heading-family); font-size: 3rem; line-height: 1; }
+.copo-star__price s { font-family: var(--font-body-family); font-size: 1.6rem; opacity: 0.6; margin-left: 0.8rem; }
+.copo-star__actions { display: flex; flex-wrap: wrap; gap: 1.2rem; width: 100%; }
+.copo-star__note { width: 100%; margin: 0; font-size: 1.3rem; color: rgba(var(--color-foreground), 0.7); display: flex; gap: 0.6rem; align-items: center; }
+.copo-star__note .copo-icon { width: 1.8rem; height: 1.8rem; }
+
+@media screen and (max-width: 749px) {
+  .copo-star__grid { grid-template-columns: 1fr; }
+  .copo-star--media-right .copo-star__media { order: 0; }
+  .copo-star__media { aspect-ratio: 4 / 4.4; margin-inline: calc(var(--copo-gutter) * -0.5); }
+  .copo-star__actions .button { flex: 1 1 100%; }
+}
+
+/* =========================================================================
+   ANTES / DESPUÉS
+   ========================================================================= */
+.copo-compare {
+  --copo-pos: 50%;
+  position: relative;
+  display: block;
+  aspect-ratio: var(--copo-ratio, 16 / 10);
+  border-radius: var(--copo-radius);
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+  background: #000;
+}
+.copo-compare__layer { position: absolute; inset: 0; }
+.copo-compare__layer img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.copo-compare__layer--after { clip-path: inset(0 0 0 var(--copo-pos)); }
+.copo-compare__tag {
+  position: absolute;
+  top: 1.4rem;
+  z-index: 3;
+  padding: 0.5rem 1.2rem;
+  border-radius: 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(20, 22, 28, 0.72);
+  color: #f3ecdf;
+  backdrop-filter: blur(6px);
+}
+.copo-compare__tag--before { left: 1.4rem; }
+.copo-compare__tag--after { right: 1.4rem; background: rgba(216, 180, 119, 0.92); color: var(--copo-noche); }
+.copo-compare__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--copo-pos);
+  width: 2px;
+  margin-left: -1px;
+  background: #fbf8f2;
+  z-index: 3;
+  pointer-events: none;
+}
+.copo-compare__handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4.8rem;
+  height: 4.8rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fbf8f2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314161c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 7l-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E") center / 2.2rem no-repeat;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.copo-compare { cursor: ew-resize; }
+.copo-compare input[type='range'] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.copo-compare input[type='range']:focus-visible + .copo-compare__handle::after { outline: 3px solid var(--copo-oro); outline-offset: 3px; }
+.copo-compare .copo-ph__label { z-index: 3; }
+.copo-compare-section__caption { margin-top: 1.6rem; font-size: 1.3rem; color: rgba(var(--color-foreground), 0.65); text-align: center; }
+@media screen and (max-width: 749px) {
+  .copo-compare { aspect-ratio: var(--copo-ratio-mobile, 4 / 5); }
+}
+
+/* =========================================================================
+   CATEGORÍAS
+   ========================================================================= */
+.copo-cats__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--copo-cols, 4), minmax(0, 1fr));
+  gap: clamp(1.2rem, 2vw, 2.4rem);
+}
+.copo-cat {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--copo-radius);
+  overflow: hidden;
+  color: #fbf8f2;
+  text-decoration: none;
+  background: var(--copo-pino);
+}
+.copo-cat--wide { grid-column: span 2; aspect-ratio: auto; }
+.copo-cat__media,
+.copo-cat__media > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.copo-cat__media img { object-fit: cover; transition: transform 0.8s var(--copo-ease); }
+.copo-cat:hover .copo-cat__media img { transform: scale(1.05); }
+.copo-cat::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 22, 28, 0) 40%, rgba(20, 22, 28, 0.78) 100%);
+}
+.copo-cat .copo-ph__label { display: none; }
+.copo-cat__body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 2rem; }
+.copo-cat__title { margin: 0 0 0.4rem; color: inherit; font-size: clamp(2rem, 1.7rem + 0.8vw, 2.6rem); }
+.copo-cat__text { margin: 0; font-size: 1.35rem; line-height: 1.45; opacity: 0.85; }
+.copo-cat__cta { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1rem; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.04em; color: var(--copo-oro); }
+.copo-cat:focus-visible { outline: 2px solid var(--copo-oro); outline-offset: 3px; }
+@media screen and (max-width: 989px) {
+  .copo-cats__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .copo-cat--wide { grid-column: span 2; aspect-ratio: 16 / 10; }
+}
+@media screen and (max-width: 749px) {
+  .copo-cats--scroll .copo-cats__grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--copo-gutter);
+    margin-inline: calc(var(--copo-gutter) * -1);
+    padding-inline: var(--copo-gutter);
+    scrollbar-width: none;
+  }
+  .copo-cats--scroll .copo-cats__grid::-webkit-scrollbar { display: none; }
+  .copo-cats--scroll .copo-cat { flex: 0 0 68%; scroll-snap-align: start; aspect-ratio: 3 / 4; }
+}
+
+/* =========================================================================
+   PASOS "CÓMO FUNCIONA"
+   ========================================================================= */
+.copo-steps__list { display: grid; grid-template-columns: repeat(var(--copo-cols, 3), minmax(0, 1fr)); gap: clamp(2rem, 3vw, 4rem); margin: 0; padding: 0; list-style: none; counter-reset: copo-step; }
+.copo-step { position: relative; padding-top: 6.4rem; counter-increment: copo-step; }
+.copo-step::before {
+  content: counter(copo-step, decimal-leading-zero);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-heading-family);
+  font-size: 4.4rem;
+  line-height: 1;
+  color: var(--copo-oro-texto);
+}
+.color-scheme-3 .copo-step::before,
+.color-scheme-4 .copo-step::before { color: var(--copo-oro); }
+.copo-step__media { aspect-ratio: 4 / 3; margin-bottom: 2rem; border-radius: var(--copo-radius); overflow: hidden; }
+.copo-step__media img { width: 100%; height: 100%; object-fit: cover; }
+.copo-step__title { margin: 0 0 0.8rem; font-size: 2.2rem; }
+.copo-step__text { margin: 0; color: rgba(var(--color-foreground), 0.75); line-height: 1.6; }
+@media screen and (max-width: 749px) {
+  .copo-steps__list { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   GALERÍA "EN CADA HABITACIÓN"
+   ========================================================================= */
+.copo-rooms__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(1.2rem, 2vw, 2rem); }
+.copo-room { position: relative; margin: 0; border-radius: var(--copo-radius); overflow: hidden; aspect-ratio: 4 / 5; grid-column: span 4; }
+.copo-room:nth-child(4n + 1) { grid-column: span 7; aspect-ratio: 16 / 11; }
+.copo-room:nth-child(4n + 2) { grid-column: span 5; aspect-ratio: auto; }
+.copo-room img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.copo-room figcaption {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.4rem;
+  z-index: 3;
+  padding: 0.6rem 1.4rem;
+  border-radius: 40px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: rgba(251, 248, 242, 0.92);
+  color: var(--copo-noche);
+}
+.copo-room .copo-ph__label { top: 1.2rem; bottom: auto; }
+@media screen and (max-width: 749px) {
+  .copo-rooms__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--copo-gutter); margin-inline: calc(var(--copo-gutter) * -1); padding-inline: var(--copo-gutter); scrollbar-width: none; }
+  .copo-rooms__grid::-webkit-scrollbar { display: none; }
+  .copo-room, .copo-room:nth-child(n) { flex: 0 0 80%; aspect-ratio: 4 / 5; scroll-snap-align: start; }
+}
+
+/* =========================================================================
+   PACK "COMPLETA EL AMBIENTE"
+   ========================================================================= */
+.copo-bundle__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(28rem, 36rem); gap: clamp(2.4rem, 4vw, 4.8rem); align-items: start; }
+.copo-bundle__items { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1.6rem; margin: 0; padding: 0; list-style: none; }
+.copo-bundle__item { position: relative; }
+.copo-bundle__label {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  border-radius: var(--copo-radius);
+  overflow: hidden;
+  cursor: pointer;
+  background: rgb(var(--color-background));
+  box-shadow: inset 0 0 0 1px rgba(var(--color-foreground), 0.12);
+  transition: box-shadow 0.25s var(--copo-ease), transform 0.25s var(--copo-ease);
+}
+.copo-bundle__item.is-selected .copo-bundle__label { box-shadow: inset 0 0 0 2px var(--copo-oro-texto); }
+.color-scheme-3 .copo-bundle__item.is-selected .copo-bundle__label,
+.color-scheme-4 .copo-bundle__item.is-selected .copo-bundle__label { box-shadow: inset 0 0 0 2px var(--copo-oro); }
+.copo-bundle__media { aspect-ratio: 1; background: var(--copo-crema); }
+.copo-bundle__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.copo-bundle__info { padding: 1.4rem 1.6rem 1.6rem 5.2rem; position: relative; }
+.copo-bundle__name { display: block; font-weight: 500; line-height: 1.35; margin-bottom: 0.4rem; }
+.copo-bundle__price { font-weight: 600; }
+.copo-bundle__check {
+  position: absolute;
+  left: 1.6rem;
+  top: 1.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: 0;
+  accent-color: var(--copo-pino);
+}
+.color-scheme-3 .copo-bundle__check,
+.color-scheme-4 .copo-bundle__check { accent-color: var(--copo-oro); }
+.copo-bundle__check:focus-visible { outline: 2px solid var(--copo-oro); outline-offset: 2px; }
+.copo-bundle__summary {
+  position: sticky;
+  top: 10rem;
+  padding: 2.8rem;
+  border-radius: var(--copo-radius);
+  background: rgba(var(--color-foreground), 0.04);
+  box-shadow: inset 0 0 0 1px rgba(var(--color-foreground), 0.1);
+}
+.copo-bundle__summary h3 { margin: 0 0 1.2rem; font-size: 2.2rem; }
+.copo-bundle__total { display: flex; justify-content: space-between; align-items: baseline; margin: 2rem 0; padding-top: 2rem; border-top: 1px solid rgba(var(--color-foreground), 0.12); }
+.copo-bundle__total strong { font-family: var(--font-heading-family); font-size: 3rem; font-weight: 450; }
+.copo-bundle__offer { margin: 0 0 1.6rem; padding: 1rem 1.4rem; border-radius: var(--copo-radius-sm); font-size: 1.35rem; font-weight: 500; background: rgba(216, 180, 119, 0.18); }
+.copo-bundle__fine { margin: 1.2rem 0 0; font-size: 1.25rem; color: rgba(var(--color-foreground), 0.65); }
+@media screen and (max-width: 989px) {
+  .copo-bundle__grid { grid-template-columns: 1fr; }
+  .copo-bundle__summary { position: static; }
+}
+@media screen and (max-width: 749px) {
+  .copo-bundle__items { grid-template-columns: 1fr; }
+  .copo-bundle__label { grid-template-rows: none; grid-template-columns: 9.6rem 1fr; }
+  .copo-bundle__media { aspect-ratio: auto; height: 100%; }
+}
+
+.copo-error { margin: 1.2rem 0 0; font-size: 1.35rem; color: #b3261e; }
+.color-scheme-3 .copo-error, .color-scheme-4 .copo-error { color: #ffb4a9; }
+
+/* =========================================================================
+   FICHA TÉCNICA DE PRODUCTO (metacampos)
+   ========================================================================= */
+.copo-details__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2.4rem, 4vw, 6.4rem); }
+.copo-details__card { padding: clamp(2.4rem, 3vw, 3.6rem); border-radius: var(--copo-radius); background: rgba(var(--color-foreground), 0.035); }
+.copo-details__card h3 { display: flex; gap: 1.2rem; align-items: center; margin: 0 0 1.6rem; font-size: 2.2rem; }
+.copo-details__card h3 .copo-icon { color: var(--copo-oro-texto); }
+.color-scheme-3 .copo-details__card h3 .copo-icon, .color-scheme-4 .copo-details__card h3 .copo-icon { color: var(--copo-oro); }
+.copo-details__card .rte table { width: 100%; border-collapse: collapse; font-size: 1.45rem; }
+.copo-details__card .rte td, .copo-details__card .rte th { padding: 1rem 0; border-bottom: 1px solid rgba(var(--color-foreground), 0.1); text-align: left; vertical-align: top; }
+.copo-details__card .rte ul { padding-left: 1.8rem; }
+.copo-details__card .rte li { margin-bottom: 0.6rem; }
+.copo-details__card--full { grid-column: 1 / -1; }
+.copo-details__pending { margin: 0; padding: 1.4rem 1.6rem; border: 1px dashed rgba(var(--color-foreground), 0.35); border-radius: var(--copo-radius-sm); font-size: 1.35rem; color: rgba(var(--color-foreground), 0.75); }
+@media screen and (max-width: 749px) {
+  .copo-details__grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   BLOQUES DE LA FICHA DE PRODUCTO (main-product)
+   ========================================================================= */
+.copo-highlights { display: grid; gap: 1rem; margin: 0.4rem 0 0.8rem; padding: 0; list-style: none; }
+.copo-highlights li { display: flex; gap: 1rem; align-items: flex-start; font-size: 1.5rem; line-height: 1.45; }
+.copo-highlights .copo-icon { width: 2rem; height: 2rem; margin-top: 0.1rem; color: var(--copo-oro-texto); }
+.color-scheme-3 .copo-highlights .copo-icon, .color-scheme-4 .copo-highlights .copo-icon { color: var(--copo-oro); }
+
+.copo-assurance {
+  display: grid;
+  gap: 1.2rem;
+  margin: 0.4rem 0 1.2rem;
+  padding: 1.6rem 1.8rem;
+  border-radius: var(--copo-radius);
+  background: rgba(var(--color-foreground), 0.04);
+  font-size: 1.4rem;
+  line-height: 1.45;
+}
+.copo-assurance__row { display: flex; gap: 1.2rem; align-items: flex-start; }
+.copo-assurance__row .copo-icon { width: 2.2rem; height: 2.2rem; color: rgba(var(--color-foreground), 0.8); }
+.copo-assurance__row strong { font-weight: 600; }
+.copo-assurance a { color: inherit; text-underline-offset: 0.3rem; }
+
+/* Precio en la ficha */
+.product__info-container .price { font-size: 1.8rem; }
+.product__info-container .price .price-item--sale,
+.product__info-container .price .price-item--regular { font-family: var(--font-heading-family); font-size: 2.8rem; letter-spacing: -0.01em; }
+.product__title h1 { font-size: clamp(2.8rem, 2.2rem + 1.6vw, 4.2rem); }
+
+/* =========================================================================
+   BARRA FIJA DE COMPRA (móvil)
+   ========================================================================= */
+copo-sticky-atc { display: none; }
+@media screen and (max-width: 749px) {
+  copo-sticky-atc {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1rem 1.6rem calc(1rem + env(safe-area-inset-bottom));
+    background: rgba(var(--color-background), 0.97);
+    box-shadow: 0 -10px 30px rgba(20, 22, 28, 0.12);
+    transform: translateY(110%);
+    transition: transform 0.35s var(--copo-ease);
+    visibility: hidden;
+  }
+  copo-sticky-atc[data-visible] { transform: translateY(0); visibility: visible; }
+  .copo-sticky__info { min-width: 0; flex: 1; }
+  .copo-sticky__title { display: block; font-size: 1.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(var(--color-foreground), 0.75); }
+  .copo-sticky__price { font-weight: 600; font-size: 1.6rem; }
+  copo-sticky-atc .button { min-height: 4.8rem; padding: 0 2rem; flex: none; }
+  copo-sticky-atc .button[aria-disabled] { opacity: 0.6; }
+}
+
+/* =========================================================================
+   CARRITO: barra de envío gratis
+   ========================================================================= */
+.copo-freeship { margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border-radius: var(--copo-radius-sm); background: rgba(var(--color-foreground), 0.04); font-size: 1.35rem; }
+.copo-freeship p { margin: 0 0 0.8rem; }
+.copo-freeship__bar { height: 0.6rem; border-radius: 40px; background: rgba(var(--color-foreground), 0.1); overflow: hidden; }
+.copo-freeship__bar span { display: block; height: 100%; width: var(--copo-progress, 0%); background: var(--copo-oro); border-radius: inherit; transition: width 0.5s var(--copo-ease); }
+
+/* =========================================================================
+   Dawn: FAQ (contenido desplegable) y boletín
+   ========================================================================= */
+.collapsible-content .accordion { border-color: rgba(var(--color-foreground), 0.12); }
+.collapsible-content .accordion summary { padding: 2.2rem 0; }
+.collapsible-content .accordion__title { font-family: var(--font-body-family); font-weight: 500; font-size: 1.7rem; letter-spacing: 0; }
+.collapsible-content .accordion__content { font-size: 1.55rem; line-height: 1.65; color: rgba(var(--color-foreground), 0.8); padding-bottom: 2.4rem; }
+.newsletter__wrapper .field__input { border-radius: 40px; }
+.newsletter-form__field-wrapper .field:after { border-radius: 40px; }
+
+/* Pie de página */
+.footer-block__heading { font-family: var(--font-body-family); font-size: 1.3rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* =========================================================================
+   Movimiento reducido
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .button, .card__media .media img, .copo-cat__media img, copo-sticky-atc { transition: none !important; }
+  .button:not([disabled]):hover { transform: none; }
+}
+
+@media screen and (max-width: 749px) {
+  body:has(copo-sticky-atc[data-visible]) .footer { padding-bottom: 8rem; }
+}
+
+/* Etiquetas de ilustración provisional: evitar solapes */
+.copo-compare .copo-ph__label { display: none; }
+.copo-compare-section__notice { margin: 1.4rem auto 0; max-width: 60ch; display: flex; gap: 0.8rem; justify-content: center; align-items: center; font-size: 1.3rem; font-weight: 600; text-align: center; color: rgba(var(--color-foreground), 0.8); }
+.copo-compare-section__notice .copo-icon { width: 1.8rem; height: 1.8rem; color: var(--copo-oro); }
+.copo-bundle__media .copo-ph__label { display: none; }

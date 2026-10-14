@@ -1,0 +1,57 @@
+{%- comment -%}
+  Ilustración provisional (no es una foto del producto).
+  variant: 'room-off' | 'room-on' | 'product' | 'category'
+  label: texto que aparece en la etiqueta "Provisional". Se muestra siempre,
+  para que nadie confunda la ilustración con el resultado real del producto.
+{%- endcomment -%}
+{%- assign v = variant | default: 'room-on' -%}
+<div class="copo-ph copo-ph--{{ v }}" role="img" aria-label="{{ label | default: 'Imagen provisional' | escape }}">
+  <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="copoWall-{{ v }}" x1="0" y1="0" x2="0" y2="1">
+        {%- if v == 'room-off' -%}
+          <stop offset="0" stop-color="#3a3630"/><stop offset="1" stop-color="#25221e"/>
+        {%- elsif v == 'product' or v == 'category' -%}
+          <stop offset="0" stop-color="#F1E8DA"/><stop offset="1" stop-color="#E4D6BF"/>
+        {%- else -%}
+          <stop offset="0" stop-color="#0d1020"/><stop offset=".6" stop-color="#161a2b"/><stop offset="1" stop-color="#1d1a1c"/>
+        {%- endif -%}
+      </linearGradient>
+      <radialGradient id="copoGlow-{{ v }}" cx=".5" cy=".85" r=".7">
+        <stop offset="0" stop-color="#F6C978" stop-opacity="{% if v == 'room-off' %}.35{% else %}.22{% endif %}"/>
+        <stop offset="1" stop-color="#F6C978" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="copoBlur-{{ v }}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+      <g id="copoFlake-{{ v }}" stroke="#FFF1D2" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".75"><path d="M0-20V20M-17.3-10L17.3 10M-17.3 10L17.3-10"/></g>
+    </defs>
+    <rect width="1600" height="1000" fill="url(#copoWall-{{ v }})"/>
+    {%- if v == 'product' or v == 'category' -%}
+      <ellipse cx="800" cy="760" rx="420" ry="46" fill="#14161C" opacity=".12"/>
+      <path d="M640 760c0-120 72-232 160-232s160 112 160 232z" fill="#1F2B26"/>
+      <ellipse cx="800" cy="560" rx="60" ry="22" fill="#D8B477"/>
+      <circle cx="800" cy="556" r="10" fill="#FBF8F2"/>
+    {%- else -%}
+      <rect y="720" width="1600" height="280" fill="{% if v == 'room-off' %}#2e2a25{% else %}#141318{% endif %}"/>
+      <rect width="1600" height="1000" fill="url(#copoGlow-{{ v }})"/>
+      {%- if v == 'room-on' -%}
+        <g filter="url(#copoBlur-{{ v }})"><circle cx="525" cy="67" r="1.6" fill="#FFE9B8" opacity="0.9"/><circle cx="590" cy="27" r="1.6" fill="#FFFFFF" opacity="0.5"/><circle cx="129" cy="35" r="3.6" fill="#FFF6E0" opacity="0.52"/><circle cx="1004" cy="120" r="3.6" fill="#FFF6E0" opacity="0.67"/><circle cx="93" cy="241" r="2" fill="#F6D58E" opacity="0.75"/><circle cx="894" cy="149" r="3.6" fill="#F6D58E" opacity="0.8"/><circle cx="172" cy="268" r="3.6" fill="#FFFFFF" opacity="0.56"/><circle cx="1232" cy="235" r="2.4" fill="#FFF6E0" opacity="0.61"/><circle cx="1110" cy="97" r="3.6" fill="#F6D58E" opacity="0.72"/><circle cx="1158" cy="155" r="1.6" fill="#FFF6E0" opacity="0.73"/><circle cx="1201" cy="58" r="1.6" fill="#FFE9B8" opacity="0.98"/><circle cx="1213" cy="278" r="2.4" fill="#F6D58E" opacity="0.64"/><circle cx="947" cy="198" r="1.6" fill="#FFFFFF" opacity="0.97"/><circle cx="1107" cy="36" r="2.4" fill="#FFFFFF" opacity="0.81"/><circle cx="464" cy="162" r="1.6" fill="#F6D58E" opacity="0.97"/><circle cx="282" cy="27" r="2.4" fill="#FFF6E0" opacity="0.52"/><circle cx="641" cy="321" r="2" fill="#F6D58E" opacity="0.7"/><circle cx="1398" cy="390" r="2.4" fill="#F6D58E" opacity="0.84"/><circle cx="1085" cy="102" r="1.6" fill="#FFF6E0" opacity="0.55"/><circle cx="1047" cy="14" r="2" fill="#FFE9B8" opacity="0.59"/><circle cx="247" cy="211" r="2.4" fill="#FFE9B8" opacity="0.97"/><circle cx="732" cy="440" r="4.6" fill="#FFFFFF" opacity="0.89"/><circle cx="641" cy="140" r="3" fill="#FFE9B8" opacity="0.48"/><circle cx="1556" cy="99" r="3.6" fill="#FFE9B8" opacity="0.48"/><circle cx="904" cy="274" r="3.6" fill="#FFF6E0" opacity="0.46"/><circle cx="978" cy="44" r="2.4" fill="#FFFFFF" opacity="0.78"/><circle cx="212" cy="441" r="3" fill="#F6D58E" opacity="0.71"/><circle cx="154" cy="36" r="2.4" fill="#FFF6E0" opacity="0.71"/><circle cx="825" cy="111" r="2.4" fill="#FFE9B8" opacity="0.53"/><circle cx="1203" cy="124" r="1.6" fill="#F6D58E" opacity="0.83"/><circle cx="829" cy="275" r="2" fill="#F6D58E" opacity="0.74"/><circle cx="1013" cy="278" r="2" fill="#FFFFFF" opacity="0.89"/><circle cx="1174" cy="86" r="2.4" fill="#FFE9B8" opacity="0.85"/><circle cx="1253" cy="119" r="3.6" fill="#FFFFFF" opacity="0.98"/><circle cx="1281" cy="219" r="2.4" fill="#FFE9B8" opacity="0.49"/><circle cx="374" cy="53" r="3.6" fill="#FFE9B8" opacity="0.99"/><circle cx="768" cy="298" r="1.6" fill="#FFE9B8" opacity="0.91"/><circle cx="1439" cy="343" r="3" fill="#FFFFFF" opacity="0.94"/><circle cx="1251" cy="156" r="4.6" fill="#FFFFFF" opacity="0.67"/><circle cx="1180" cy="24" r="2" fill="#FFFFFF" opacity="0.47"/><circle cx="1278" cy="75" r="3" fill="#F6D58E" opacity="0.81"/><circle cx="263" cy="105" r="4.6" fill="#FFF6E0" opacity="0.81"/><circle cx="697" cy="403" r="2" fill="#FFF6E0" opacity="0.47"/><circle cx="477" cy="97" r="2.4" fill="#FFF6E0" opacity="0.75"/><circle cx="115" cy="362" r="4.6" fill="#FFFFFF" opacity="0.77"/><circle cx="1310" cy="199" r="2" fill="#FFE9B8" opacity="0.74"/><circle cx="1382" cy="303" r="2" fill="#FFFFFF" opacity="0.54"/><circle cx="986" cy="28" r="4.6" fill="#FFFFFF" opacity="0.74"/><circle cx="1243" cy="46" r="2" fill="#FFE9B8" opacity="0.56"/><circle cx="1225" cy="192" r="1.6" fill="#FFF6E0" opacity="0.69"/><circle cx="1101" cy="168" r="3" fill="#FFF6E0" opacity="0.73"/><circle cx="1111" cy="440" r="2.4" fill="#FFF6E0" opacity="0.96"/><circle cx="1330" cy="34" r="3" fill="#FFF6E0" opacity="0.62"/><circle cx="688" cy="65" r="1.6" fill="#FFF6E0" opacity="0.94"/><circle cx="1486" cy="199" r="2.4" fill="#FFFFFF" opacity="0.94"/><circle cx="363" cy="302" r="3" fill="#FFF6E0" opacity="0.54"/><circle cx="272" cy="158" r="2.4" fill="#F6D58E" opacity="0.68"/><circle cx="517" cy="137" r="3.6" fill="#FFE9B8" opacity="0.7"/><circle cx="620" cy="148" r="1.6" fill="#FFF6E0" opacity="0.51"/><circle cx="1536" cy="33" r="1.6" fill="#FFF6E0" opacity="0.95"/><circle cx="442" cy="48" r="4.6" fill="#F6D58E" opacity="0.9"/><circle cx="653" cy="194" r="3" fill="#FFE9B8" opacity="0.84"/><circle cx="455" cy="196" r="1.6" fill="#FFE9B8" opacity="0.6"/><circle cx="1010" cy="169" r="2" fill="#FFE9B8" opacity="0.49"/><circle cx="728" cy="130" r="2.4" fill="#FFE9B8" opacity="0.79"/><circle cx="842" cy="55" r="2" fill="#FFF6E0" opacity="0.59"/><circle cx="335" cy="93" r="2" fill="#FFF6E0" opacity="0.61"/><circle cx="442" cy="418" r="1.6" fill="#FFF6E0" opacity="0.46"/><circle cx="822" cy="87" r="4.6" fill="#FFFFFF" opacity="0.9"/><circle cx="1044" cy="268" r="3.6" fill="#FFF6E0" opacity="0.62"/><circle cx="1553" cy="165" r="4.6" fill="#FFF6E0" opacity="0.85"/><circle cx="651" cy="72" r="2" fill="#F6D58E" opacity="0.46"/><circle cx="692" cy="30" r="3" fill="#F6D58E" opacity="0.93"/><circle cx="954" cy="138" r="2" fill="#FFFFFF" opacity="0.54"/><circle cx="26" cy="110" r="3.6" fill="#FFE9B8" opacity="0.63"/><circle cx="1526" cy="98" r="1.6" fill="#FFE9B8" opacity="0.63"/><circle cx="760" cy="128" r="3.6" fill="#FFE9B8" opacity="0.88"/><circle cx="432" cy="34" r="1.6" fill="#F6D58E" opacity="0.67"/><circle cx="495" cy="94" r="3.6" fill="#FFF6E0" opacity="0.92"/><circle cx="1046" cy="346" r="3" fill="#FFFFFF" opacity="0.87"/><circle cx="253" cy="291" r="1.6" fill="#FFFFFF" opacity="0.9"/><circle cx="1165" cy="187" r="3.6" fill="#FFE9B8" opacity="0.86"/><circle cx="1309" cy="286" r="4.6" fill="#FFF6E0" opacity="0.98"/><circle cx="153" cy="24" r="1.6" fill="#FFFFFF" opacity="0.66"/><circle cx="891" cy="250" r="4.6" fill="#F6D58E" opacity="0.58"/><circle cx="25" cy="349" r="3.6" fill="#FFE9B8" opacity="0.94"/><circle cx="1049" cy="36" r="2.4" fill="#F6D58E" opacity="0.9"/><circle cx="386" cy="198" r="4.6" fill="#FFFFFF" opacity="0.99"/><circle cx="1339" cy="46" r="2.4" fill="#FFF6E0" opacity="0.87"/><circle cx="141" cy="44" r="4.6" fill="#FFF6E0" opacity="0.83"/></g>
+        <g><use href="#copoFlake-{{ v }}" transform="translate(117 59) scale(0.63)"/><use href="#copoFlake-{{ v }}" transform="translate(1041 261) scale(0.84)"/><use href="#copoFlake-{{ v }}" transform="translate(507 205) scale(0.73)"/><use href="#copoFlake-{{ v }}" transform="translate(753 78) scale(0.95)"/><use href="#copoFlake-{{ v }}" transform="translate(379 353) scale(0.97)"/><use href="#copoFlake-{{ v }}" transform="translate(125 187) scale(0.91)"/><use href="#copoFlake-{{ v }}" transform="translate(1455 184) scale(0.63)"/><use href="#copoFlake-{{ v }}" transform="translate(394 343) scale(0.61)"/><use href="#copoFlake-{{ v }}" transform="translate(914 85) scale(0.76)"/></g>
+        <path d="M1185 700L900 40h560z" fill="#F6D58E" opacity=".05"/>
+      {%- endif -%}
+      <g fill="{% if v == 'room-off' %}#4a4239{% else %}#22202a{% endif %}">
+        <rect x="360" y="600" width="660" height="170" rx="40"/>
+        <rect x="320" y="560" width="110" height="230" rx="40"/>
+        <rect x="950" y="560" width="110" height="230" rx="40"/>
+        <rect x="430" y="520" width="520" height="120" rx="34"/>
+      </g>
+      <rect x="1120" y="640" width="150" height="130" rx="10" fill="{% if v == 'room-off' %}#55493d{% else %}#26232c{% endif %}"/>
+      <path d="M1160 640c0-30 16-46 35-46s35 16 35 46z" fill="{% if v == 'room-off' %}#6b5d4d{% else %}#2f2b36{% endif %}"/>
+      {%- if v == 'room-on' -%}<circle cx="1195" cy="610" r="7" fill="#FFE9B8"/>{%- endif -%}
+      {%- if v == 'room-off' -%}
+        <path d="M200 720V420M150 420h100l-20-70h-60z" stroke="#6b5d4d" stroke-width="10" fill="#7d6a52"/>
+        <ellipse cx="200" cy="430" rx="160" ry="120" fill="#F6C978" opacity=".12"/>
+      {%- endif -%}
+    {%- endif -%}
+  </svg>
+  <span class="copo-ph__label">{% render 'copo-icon', icon: 'sparkle' %}{{ label | default: 'Imagen provisional' }}</span>
+</div>
