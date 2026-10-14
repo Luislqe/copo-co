@@ -41,7 +41,7 @@
         "button_label_1": "Descubrir la colección",
         "button_link_1": "shopify://collections/all",
         "button_label_2": "Ver el proyector",
-        "button_link_2": "shopify://collections/proyectores-de-luz",
+        "button_link_2": "shopify://products/proyector-navideno-giratorio-22-motivos",
         "overlay": 55,
         "height": "large",
         "alignment": "left",
@@ -141,7 +141,8 @@
         "quick_add": true,
         "glow": true,
         "media_position": "left",
-        "color_scheme": "scheme-3"
+        "color_scheme": "scheme-3",
+        "product": "proyector-navideno-giratorio-22-motivos"
       }
     },
     "categories": {
@@ -234,7 +235,7 @@
         "glow": true,
         "color_scheme": "scheme-3",
         "button_label": "Ver el proyector",
-        "button_link": "shopify://collections/proyectores-de-luz"
+        "button_link": "shopify://products/proyector-navideno-giratorio-22-motivos"
       }
     },
     "rooms": {
@@ -288,7 +289,12 @@
         "summary_title": "Tu selección",
         "offer_text": "",
         "button_label": "Añadir la selección al carrito",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "products": [
+          "proyector-navideno-giratorio-22-motivos",
+          "papa-noel-trepador-luces-led",
+          "proyector-diapositivas-navidenas"
+        ]
       }
     },
     "faq": {

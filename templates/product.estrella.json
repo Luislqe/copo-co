@@ -264,7 +264,12 @@
         "summary_title": "Tu selección",
         "offer_text": "",
         "button_label": "Añadir la selección al carrito",
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "products": [
+          "papa-noel-trepador-luces-led",
+          "proyector-diapositivas-navidenas",
+          "proyector-copos-de-nieve-16-motivos"
+        ]
       }
     },
     "faq": {

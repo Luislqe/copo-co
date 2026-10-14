@@ -130,12 +130,32 @@
     "sticky": {
       "type": "copo-sticky-atc",
       "settings": {}
+    },
+    "bundle": {
+      "type": "copo-bundle",
+      "settings": {
+        "eyebrow": "Combínalo",
+        "heading": "Completa <em>el ambiente</em>",
+        "text": "<p>Añade otros detalles y llévatelo todo con un solo clic.</p>",
+        "include_current": true,
+        "preselect": false,
+        "summary_title": "Tu selección",
+        "offer_text": "",
+        "button_label": "Añadir la selección al carrito",
+        "color_scheme": "scheme-2",
+        "products": [
+          "proyector-navideno-giratorio-22-motivos",
+          "papa-noel-trepador-luces-led",
+          "proyector-diapositivas-navidenas"
+        ]
+      }
     }
   },
   "order": [
     "main",
     "details",
     "disclosures",
+    "bundle",
     "related-products",
     "sticky"
   ]
