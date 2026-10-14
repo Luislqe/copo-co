@@ -20,15 +20,15 @@
         "announcement-1": {
           "type": "announcement",
           "settings": {
-            "text": "Nueva colección de Navidad 2026",
-            "link": "shopify://collections/all"
+            "text": "Envío gratis en pedidos desde 35 €",
+            "link": ""
           }
         },
         "announcement-2": {
           "type": "announcement",
           "settings": {
-            "text": "Pago seguro · 14 días para desistir",
-            "link": ""
+            "text": "Nueva colección de Navidad 2026 · Pago seguro",
+            "link": "shopify://collections/novedades"
           }
         }
       },

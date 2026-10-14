@@ -193,7 +193,9 @@
       },
       "copo_brand_fonts": true,
       "copo_sticky_atc": true,
-      "copo_returns_text": "Tienes 14 días para desistir de tu compra"
+      "copo_returns_text": "Tienes 14 días para desistir de tu compra",
+      "copo_free_shipping_threshold": 35,
+      "copo_ship_note": "3,95 € · gratis desde 35 €"
     }
   }
 }

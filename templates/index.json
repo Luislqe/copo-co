@@ -78,9 +78,9 @@
         "benefit_4": {
           "type": "benefit",
           "settings": {
-            "icon": "gift",
-            "title": "Pensado para regalar",
-            "text": "Ideas originales para estas fiestas."
+            "icon": "truck",
+            "title": "Envío gratis desde 35 €",
+            "text": "En pedidos a España. Por debajo, 3,95 €."
           }
         }
       },
@@ -303,9 +303,9 @@
         "collapsible_row_1": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "¿Cuánto tarda en llegar mi pedido?",
+            "heading": "¿Cuánto cuesta el envío y cuánto tarda?",
             "icon": "none",
-            "row_content": "<p>El plazo estimado de entrega aparece en la ficha de cada producto y en nuestra página de envíos. Si tienes una fecha importante, escríbenos antes de comprar y te diremos si llegamos a tiempo.</p>"
+            "row_content": "<p>El envío a España cuesta 3,95 € y es gratis en pedidos desde 35 €. El plazo estimado aparece en la ficha de cada producto y en nuestra página de envíos. Si tienes una fecha importante, escríbenos antes de comprar.</p>"
           }
         },
         "collapsible_row_2": {
