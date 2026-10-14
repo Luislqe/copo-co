@@ -41,7 +41,7 @@
         "button_label_1": "Descubrir la colección",
         "button_link_1": "shopify://collections/all",
         "button_label_2": "Ver el proyector",
-        "button_link_2": "",
+        "button_link_2": "shopify://collections/proyectores-de-luz",
         "overlay": 55,
         "height": "large",
         "alignment": "left",
@@ -152,7 +152,8 @@
           "settings": {
             "title": "Iluminación navideña",
             "text": "Proyectores, guirnaldas y luces LED.",
-            "wide": false
+            "wide": false,
+            "collection": "iluminacion-navidena"
           }
         },
         "category_2": {
@@ -160,7 +161,8 @@
           "settings": {
             "title": "Decoración para el hogar",
             "text": "Detalles para el salón y los dormitorios.",
-            "wide": false
+            "wide": false,
+            "collection": "decoracion-hogar"
           }
         },
         "category_3": {
@@ -168,7 +170,8 @@
           "settings": {
             "title": "Árbol de Navidad",
             "text": "Adornos y accesorios.",
-            "wide": false
+            "wide": false,
+            "collection": "arbol-de-navidad"
           }
         },
         "category_4": {
@@ -176,7 +179,8 @@
           "settings": {
             "title": "Regalos originales",
             "text": "Ideas para sorprender.",
-            "wide": false
+            "wide": false,
+            "collection": "regalos-originales"
           }
         }
       },
@@ -230,7 +234,7 @@
         "glow": true,
         "color_scheme": "scheme-3",
         "button_label": "Ver el proyector",
-        "button_link": ""
+        "button_link": "shopify://collections/proyectores-de-luz"
       }
     },
     "rooms": {
